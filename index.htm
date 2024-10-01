@@ -182,11 +182,18 @@
             border-radius: 6px;
             background-color: #fff;
         }
-        .status-circle {
+        .status-circle-green {
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background-color: green;
+            margin-right: 10px;
+        }
+		.status-circle-yellow {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #FFD700;
             margin-right: 10px;
         }
         footer {
@@ -211,7 +218,7 @@
         .info-message {
             font-size: 20px;
             font-weight: bold;
-            color: #1682A9; /* Cambiado aquí */
+            color: black; /* Cambiado aquí */
             text-align: center;
             margin: 20px 0;
         }
@@ -226,6 +233,8 @@
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
+			display: none; /* Oculta el chat */
+
         }
         .chat-header {
             background-color: #1682A9; /* Color del encabezado */
@@ -297,7 +306,7 @@
             <label for="terms">Acepto los términos y condiciones y el tratamiento de mis datos personales</label>
         </div>
 
-        <button onclick="showMarketplace()">Ingresar</button>
+        <button onclick="showMarketplace()" id="continueBtn">Ingresar</button>
     </div>
 
     <!-- Barra de carga -->
@@ -356,37 +365,37 @@
     <div class="social" id="social-panel">
         <h3>Amigos Conectados</h3>
         <div class="friend">
-            <span class="status-circle"></span>
+            <span class="status-circle-green"></span>
             <span>Sebastián</span>
         </div>
         <div class="friend">
-            <span class="status-circle"></span>
+            <span class="status-circle-green"></span>
             <span>Mario</span>
         </div>
         <div class="friend">
-            <span class="status-circle"></span>
+            <span class="status-circle-green"></span>
             <span>Alejandro</span>
         </div>
         <div class="friend">
-            <span class="status-circle"></span>
+            <span class="status-circle-green"></span>
             <span>Lucero</span>
         </div>
         <div class="friend">
-            <span class="status-circle"></span>
+            <span class="status-circle-green"></span>
             <span>Milagros</span>
         </div>
         <div class="friend">
-            <span class="status-circle"></span>
+            <span class="status-circle-yellow"></span>
             <span>Miguel</span>
         </div>
         <div class="friend">
-            <span class="status-circle"></span>
+            <span class="status-circle-yellow"></span>
             <span>Vanessa</span>
         </div>
     </div>
 </div>
 <!-- Sección de Chat -->
-<div class="chat-container">
+<div id="chat" class="chat-container">
     <div class="chat-header">Chatea con un Asesor</div>
     <div class="chat-body" id="chat-body">
         <p><strong>Asesor:</strong> Hola, ¿en qué puedo ayudarte hoy?</p>
@@ -436,6 +445,22 @@
         alert(`Cupón ${couponCode} canjeado exitosamente.`);
         // Lógica para actualizar puntos o aplicar descuento...
     }
+	// Función que se ejecuta cuando el usuario hace clic en "Continuar"
+    document.getElementById('continueBtn').addEventListener('click', function() {
+    // Obtener el valor del DNI ingresado
+    var dni = document.getElementById('dni').value;
+    
+    // Verificar que el DNI no esté vacío
+    if (dni !== "") {
+        // Mostrar el marketplace
+        document.getElementById('marketplace-section').style.display = 'block';
+        
+        // Mostrar el chat
+        document.getElementById('chat').style.display = 'block';
+    } else {
+        alert('Por favor, ingrese su DNI');
+    }
+});
 </script>
 
 </body>
