@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
     <title>Insurance Play</title>
     <style>
         body {
@@ -452,15 +453,28 @@
     
     // Verificar que el DNI no esté vacío
     if (dni !== "") {
-        // Mostrar el marketplace
+	setTimeout(function() {
+// Mostrar el marketplace
         document.getElementById('marketplace-section').style.display = 'block';
         
         // Mostrar el chat
         document.getElementById('chat').style.display = 'block';
+      
+    }, 3000); // Delay de 3 segundos (puedes ajustar este valor)
+        
     } else {
         alert('Por favor, ingrese su DNI');
     }
 });
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Service Worker registrado con éxito:', registration);
+      })
+      .catch(function(error) {
+        console.log('Error al registrar el Service Worker:', error);
+      });
+  }
 </script>
 
 </body>
