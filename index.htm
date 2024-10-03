@@ -60,31 +60,31 @@
                 <img src="salud.jpg" alt="Seguro de Salud">
                 <h3>Seguro de Salud</h3>
                 <p>Descripción del seguro de salud.</p>
-                <button onclick="showOptionsModal()">Saber más...</button>
+                <button onclick="showOptionsModalSalud()">Saber más...</button>
             </div>
             <div class="card">
                 <img src="vida.jpg" alt="Seguro de Vida">
                 <h3>Seguro de Vida</h3>
                 <p>Descripción del seguro de vida.</p>
-                <button onclick="showOptionsModal()">Saber más...</button>
+                <button onclick="showOptionsModalVida()">Saber más...</button>
             </div>
             <div class="card">
                 <img src="viajes.jpg" alt="Seguro de Viajes">
                 <h3>Seguro de Viajes</h3>
                 <p>Descripción del seguro de viajes.</p>
-                <button onclick="showOptionsModal()">Saber más...</button>
+                <button onclick="showOptionsModalViajes()">Saber más...</button>
             </div>
             <div class="card">
                 <img src="fiestas.jpg" alt="Seguro de Fiestas">
                 <h3>Seguro de Fiestas</h3>
                 <p>Descripción del seguro de fiestas.</p>
-                <button onclick="showOptionsModal()">Saber más...</button>
+                <button onclick="showOptionsModalFiestas()">Saber más...</button>
             </div>
 			<div class="card">
                 <img src="extremos.jpg" alt="Seguro de Fiestas">
                 <h3>Seguro de Deportes Extremos</h3>
                 <p>Descripción de deportes extremos.</p>
-                <button onclick="showOptionsModal()">Saber más...</button>
+                <button onclick="showOptionsModalExtreme()">Saber más...</button>
             </div>
         </div>
 		<div class="fun-block">
@@ -179,13 +179,58 @@
     <h2 id="modalText" class="modal-text">¡Prepárate para el reto del Insurance Microlearning, termina el curso y gana 10,000 puntos!</h2>
   </div>
 </div>
-<!-- Modal Broker Structure -->
-<!-- Nuevo Modal Structure -->
-<div id="optionsModal" class="modal" style="display: none;">
+<!-- Modal Seguro de Salud -->
+<div id="optionsModalSalud" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2 class="modal-title">Selecciona a tu broker favorito...</h2>
+        <h2 class="modal-title">Seguro de Salud</h2>
+
+        <!-- Panel Informativo sobre Cobertura Salud -->
+        <div class="info-panel">
+            <h3>Cobertura General del mejor seguro de Salud para tí</h3>
+            <p>A continuación se muestra una breve descripción de la cobertura general:</p>
+            <p>Este seguro ofrece protección ante una variedad de situaciones, incluyendo:</p>
+            <ul>
+                <li>Atención médica de emergencia.</li>
+                <li>Consultas y tratamientos médicos.</li>
+                <li>Asistencia en caso de accidentes.</li>
+                <li>Cobertura de gastos hospitalarios.</li>
+                <li>Protección financiera para ti y tu familia.</li>
+            </ul>
+        </div>
+
         <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+        </ul>
+        <button id="chatButton" class="chat-button">Conversar con tu broker favorito</button>
+    </div>
+</div>
+<!-- Modal Seguro de Vida -->
+<div id="optionsModalVida" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Vida</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Vida -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Vida</h3>
+            <p>Este seguro proporciona protección financiera para tus seres queridos en caso de que algo inesperado suceda. La cobertura incluye:</p>
+            <ul>
+                <li>Indemnización por fallecimiento.</li>
+                <li>Beneficios por invalidez total o permanente.</li>
+                <li>Cobertura de gastos funerarios.</li>
+                <li>Opciones de ahorro y acumulación de capital.</li>
+                <li>Asesoría en planificación patrimonial.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
             <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
             <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
             <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
@@ -193,9 +238,106 @@
             <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
             <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
         </ul>
-        <button id="chatButton" class="chat-button">Conversar con tu broker favorito</button>
+        <button id="chatButtonLife" class="chat-button">Conversar con tu broker favorito</button>
     </div>
 </div>
+
+<!-- Modal Seguro de Viajes -->
+<div id="optionsModalViajes" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Viajes</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Viajes -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Viajes</h3>
+            <p>Este seguro está diseñado para proporcionarte tranquilidad durante tus viajes. La cobertura incluye:</p>
+            <ul>
+                <li>Asistencia médica en el extranjero.</li>
+                <li>Indemnización por cancelación de viaje.</li>
+                <li>Protección de equipaje perdido o robado.</li>
+                <li>Responsabilidad civil en el extranjero.</li>
+                <li>Evacuación médica de emergencia.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonViajes" class="chat-button">Conversar con tu broker favorito</button>
+    </div>
+</div>
+
+<!-- Modal Seguro de Fiestas -->
+<div id="optionsModalFiestas" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Fiestas</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Fiestas -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Fiestas</h3>
+            <p>Este seguro está diseñado para protegerte durante tus eventos y celebraciones. La cobertura incluye:</p>
+            <ul>
+                <li>Responsabilidad civil por daños a terceros.</li>
+                <li>Cobertura de accidentes personales para los asistentes.</li>
+                <li>Protección contra cancelación o reprogramación del evento.</li>
+                <li>Cobertura de daño a la propiedad alquilada.</li>
+                <li>Recojo por chofer en caso de intoxicación.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonFiestas" class="chat-button">Conversar con tu broker favorito</button>
+    </div>
+</div>
+
+<!-- Modal Seguro de Deportes Extremos -->
+<div id="optionsModalExtreme" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Deportes Extremos</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Deportes Extremos -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Deportes Extremos</h3>
+            <p>Este seguro está diseñado para brindarte protección durante la práctica de deportes extremos. La cobertura incluye:</p>
+            <ul>
+                <li>Indemnización por lesiones accidentales durante la actividad.</li>
+                <li>Asistencia médica y evacuación en caso de emergencia.</li>
+                <li>Cobertura de equipo deportivo perdido o dañado.</li>
+                <li>Responsabilidad civil por daños a terceros.</li>
+                <li>Protección en actividades como escalada, paracaidismo, surf, entre otros.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonDeportesExtremos" class="chat-button">Conversar con tu broker favorito</button>
+    </div>
+</div>
+
 
 <!-- Pie de Página -->
 <footer>

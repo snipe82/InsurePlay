@@ -132,12 +132,71 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
 	};
 	// script.js
 
-// Mostrar el modal de broker
-function showOptionsModal() {
-    const modal = document.getElementById("optionsModal");
+// Mostrar el modal de seguro de salud
+function showOptionsModalSalud() {
+    const modal = document.getElementById("optionsModalSalud");
     modal.style.display = "flex";
 }
+// También puedes permitir cerrar el modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById("optionsModalSalud");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
 
+// Mostrar el modal de seguro de vida
+function showOptionsModalVida() {
+    const modal = document.getElementById("optionsModalVida");
+    modal.style.display = "flex";
+}
+// También puedes permitir cerrar el modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById("optionsModalVida");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Mostrar el modal de seguro de viajes
+function showOptionsModalViajes() {
+    const modal = document.getElementById("optionsModalViajes");
+    modal.style.display = "flex";
+}
+// También puedes permitir cerrar el modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById("optionsModalViajes");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Mostrar el modal de seguro de fiestas
+function showOptionsModalFiestas() {
+    const modal = document.getElementById("optionsModalFiestas");
+    modal.style.display = "flex";
+}
+// También puedes permitir cerrar el modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById("optionsModalFiestas");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Mostrar el modal de seguro de deportes extremos
+function showOptionsModalExtreme() {
+    const modal = document.getElementById("optionsModalExtreme");
+    modal.style.display = "flex";
+}
+// También puedes permitir cerrar el modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById("optionsModalExtreme");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
+ 
 // Lógica para cerrar el modal
 document.querySelectorAll('.close').forEach(function(element) {
     element.onclick = function() {
@@ -146,13 +205,6 @@ document.querySelectorAll('.close').forEach(function(element) {
     };
 });
 
-// También puedes permitir cerrar el modal al hacer clic fuera de él
-window.onclick = function(event) {
-    const modal = document.getElementById("optionsModal");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
 
 // Añadir un evento al botón de conversar
 document.getElementById('chatButton').onclick = function() {
