@@ -3,279 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="/manifest.json">
     <title>Insurance Play</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f0f5;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-        header {
-            background-color: #1682A9; /* Cambiado aquí */
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 4px solid #0c5566; /* Cambiado aquí */
-        }
-        header img {
-            max-width: 160px;
-            height: auto;
-            border-radius: 50%;
-        }
-        .header-title {
-            flex-grow: 1; /* Para ocupar espacio */
-            text-align: center; /* Centrar el texto */
-            font-size: 24px; /* Ajusta el tamaño de la fuente si es necesario */
-            font-weight: bold;
-        }
-        .points-account {
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            color: white;
-        }
-        .points-account strong {
-            font-size: 22px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            gap: 20px;
-        }
-        .login-form {
-            text-align: center;
-            margin-bottom: 20px;
-			margin: 0 auto; 
-			max-width: 400px;
-        }
-        .login-form input[type="text"] {
-            padding: 10px;
-            font-size: 18px;
-            border: 2px solid #1682A9; /* Cambiado aquí */
-            border-radius: 6px;
-            margin: 10px 0;
-            width: 80%;
-            max-width: 400px;
-        }
-        .login-form label {
-            display: block;
-            margin-bottom: 10px;
-            color: #1682A9; /* Cambiado aquí */
-            font-weight: bold;
-        }
-        .login-form input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        .login-form button {
-            background-color: #1682A9; /* Cambiado aquí */
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .login-form button:hover {
-            background-color: #0c5566; /* Cambiado aquí */
-        }
-        .loading {
-            display: none;
-            text-align: center;
-            margin: 20px 0;
-        }
-        .loading .loader {
-            border: 6px solid #f3f3f3; /* Light grey */
-            border-top: 6px solid #1682A9; /* Cambiado aquí */
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 2s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        h2 {
-            color: #1682A9; /* Cambiado aquí */
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        .marketplace, .discounts {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .card {
-            flex: 1;
-            min-width: 380px;
-            background-color: #f9f9f9;
-            border: 2px solid #ddd;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .card img {
-            max-width: 250px;
-            margin-bottom: 10px;
-        }
-        .card button {
-            background-color: #1682A9; /* Cambiado aquí */
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .card button:hover {
-            background-color: #0c5566; /* Cambiado aquí */
-        }
-        .points-system .points-balance {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-        }
-        .points-system .points-graphic {
-            display: block;
-            background-color: #1682A9; /* Cambiado aquí */
-            height: 30px;
-            width: calc(50% + 10px);
-            margin: 20px 0;
-            border-radius: 5px;
-        }
-        .social {
-            width: 300px;
-            border: 2px solid #ddd;
-            border-radius: 12px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            display: none; /* Inicialmente oculto */
-        }
-        .social h3 {
-            text-align: center;
-            color: #1682A9; /* Cambiado aquí */
-        }
-        .friend {
-            margin: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            background-color: #fff;
-        }
-        .status-circle-green {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: green;
-            margin-right: 10px;
-        }
-		.status-circle-yellow {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #FFD700;
-            margin-right: 10px;
-        }
-        footer {
-            background-color: #1682A9; /* Cambiado aquí */
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            margin-top: 30px;
-            border-top: 4px solid #0c5566; /* Cambiado aquí */
-        }
-        .medal {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 10px 0;
-        }
-        .medal img {
-            width: 50px; /* Ajustar tamaño de la medalla */
-            height: auto;
-            margin-right: 10px;
-        }
-        .info-message {
-            font-size: 20px;
-            font-weight: bold;
-            color: black; /* Cambiado aquí */
-            text-align: center;
-            margin: 20px 0;
-        }
-		 /* Estilos para el chat */
-        .chat-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-			display: none; /* Oculta el chat */
-
-        }
-        .chat-header {
-            background-color: #1682A9; /* Color del encabezado */
-            color: white;
-            padding: 10px;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            text-align: center;
-            font-weight: bold;
-        }
-        .chat-body {
-            max-height: 300px;
-            overflow-y: auto;
-            padding: 10px;
-        }
-        .chat-input {
-            display: flex;
-            padding: 10px;
-        }
-        .chat-input input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
-        .chat-input button {
-            padding: 10px;
-            background-color: #1682A9; /* Color del botón */
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .chat-input button:hover {
-            background-color: #0c5566; /* Color del botón al pasar el mouse */
-        }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlaza el CSS -->
+</head> 
 
 <header>
     <!-- Espacio para el logo -->
@@ -301,7 +31,12 @@
         <h2>Insurance Play - Acceso</h2>
         <label for="dni">Ingresa tu DNI:</label>
         <input type="text" id="dni" name="dni" placeholder="DNI">
-
+		<!-- Nueva casilla de texto para contar más cosas -->
+		<label for="additional-info">Cuéntanos más sobre ti (hobbies, rutina, intereses, diversión, planes):</label>
+		<textarea id="additional-info" rows="8" cols="50" name="additional-info" placeholder="Anímate a contarnos sobre tus hobbies, tu rutina diaria, tus intereses, cómo te diviertes, y cuáles son tus planes..."></textarea>
+ 
+		<!-- Botón para activar el micrófono -->
+        <button id="microphone-btn">🎤 Hablar</button>
         <div>
             <input type="checkbox" id="terms" name="terms">
             <label for="terms">Acepto los términos y condiciones y el tratamiento de mis datos personales</label>
@@ -325,25 +60,31 @@
                 <img src="salud.jpg" alt="Seguro de Salud">
                 <h3>Seguro de Salud</h3>
                 <p>Descripción del seguro de salud.</p>
-                <button onclick="redeemCoupon('SALUD20')">Canjear Cupón</button>
+                <button onclick="showOptionsModal()">Saber más...</button>
             </div>
             <div class="card">
                 <img src="vida.jpg" alt="Seguro de Vida">
                 <h3>Seguro de Vida</h3>
                 <p>Descripción del seguro de vida.</p>
-                <button onclick="redeemCoupon('VIDA15')">Canjear Cupón</button>
+                <button onclick="showOptionsModal()">Saber más...</button>
             </div>
             <div class="card">
                 <img src="viajes.jpg" alt="Seguro de Viajes">
                 <h3>Seguro de Viajes</h3>
                 <p>Descripción del seguro de viajes.</p>
-                <button onclick="redeemCoupon('VIAJES25')">Canjear Cupón</button>
+                <button onclick="showOptionsModal()">Saber más...</button>
             </div>
             <div class="card">
                 <img src="fiestas.jpg" alt="Seguro de Fiestas">
                 <h3>Seguro de Fiestas</h3>
                 <p>Descripción del seguro de fiestas.</p>
-                <button onclick="redeemCoupon('FIESTAS30')">Canjear Cupón</button>
+                <button onclick="showOptionsModal()">Saber más...</button>
+            </div>
+			<div class="card">
+                <img src="extremos.jpg" alt="Seguro de Fiestas">
+                <h3>Seguro de Deportes Extremos</h3>
+                <p>Descripción de deportes extremos.</p>
+                <button onclick="showOptionsModal()">Saber más...</button>
             </div>
         </div>
 
@@ -362,42 +103,52 @@
         </div>
     </div>
 
-    <!-- Panel Social de Amigos Conectados -->
-    <div class="social" id="social-panel">
-        <h3>Amigos Conectados</h3>
-        <div class="friend">
-            <span class="status-circle-green"></span>
-            <span>Sebastián</span>
-        </div>
-        <div class="friend">
-            <span class="status-circle-green"></span>
-            <span>Mario</span>
-        </div>
-        <div class="friend">
-            <span class="status-circle-green"></span>
-            <span>Alejandro</span>
-        </div>
-        <div class="friend">
-            <span class="status-circle-green"></span>
-            <span>Lucero</span>
-        </div>
-        <div class="friend">
-            <span class="status-circle-green"></span>
-            <span>Milagros</span>
-        </div>
-        <div class="friend">
-            <span class="status-circle-yellow"></span>
-            <span>Miguel</span>
-        </div>
-        <div class="friend">
-            <span class="status-circle-yellow"></span>
-            <span>Vanessa</span>
-        </div>
+	<!-- Panel Social de Amigos Conectados -->
+	<div class="social" id="social-panel">
+    <h3>Contactos Conectados</h3>
+	<div class="friend">
+        <span class="status-circle-green"></span>
+		<span>Papá</span>
     </div>
+    <div class="friend"><button class="btn-pedir-ayuda">Solicitar a papá colaboración para póliza</button> </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Mamá</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Sebastián</span>
+    </div>
+    <div class="friend"><button class="btn-pedir-ayuda">Sebastián te ha solicitado colaborar en el seguro de su viaje a Colombia</button> </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Mario</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Alejandro</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Lucero</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Milagros</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-yellow"></span>
+        <span>Miguel</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-yellow"></span>
+        <span>Vanessa</span>
+    </div>
+	</div>
 </div>
 <!-- Sección de Chat -->
 <div id="chat" class="chat-container">
-    <div class="chat-header">Chatea con un Asesor</div>
+    <div class="chat-header">Chatea con un Broker</div>
     <div class="chat-body" id="chat-body">
         <p><strong>Asesor:</strong> Hola, ¿en qué puedo ayudarte hoy?</p>
     </div>
@@ -406,76 +157,37 @@
         <button id="send-message">Enviar</button>
     </div>
 </div>
+
+<!-- Modal Microlearning Structure -->
+<div id="loadingModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="loadingImage" src="microlearning.png" alt="Cargando..." />
+    <h2 id="modalText" class="modal-text">¡Prepárate para el reto del Insurance Microlearning, termina el curso y gana 10,000 puntos!</h2>
+  </div>
+</div>
+<!-- Modal Broker Structure -->
+<!-- Nuevo Modal Structure -->
+<div id="optionsModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Selecciona a tu broker favorito...</h2>
+        <ul class="options-list">
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButton" class="chat-button">Conversar con tu broker favorito</button>
+    </div>
+</div>
+
 <!-- Pie de Página -->
 <footer>
     <p>&copy; 2024 Insurance Play. Todos los derechos reservados.</p>
 </footer>
-
-<script>
-    function showMarketplace() {
-        const dniInput = document.getElementById('dni').value;
-        const termsChecked = document.getElementById('terms').checked;
-
-        // Validar el formato del DNI (8 dígitos)
-        if (!/^\d{8}$/.test(dniInput)) {
-            alert('Por favor, ingresa un DNI válido de 8 dígitos.');
-            return;
-        }
-
-        if (!termsChecked) {
-            alert('Por favor, acepta los términos.');
-            return;
-        }
-
-        document.getElementById('login-form').style.display = 'none';
-        document.getElementById('loading').style.display = 'block';
-
-        setTimeout(() => {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('marketplace-section').style.display = 'block';
-            document.getElementById('points-display').style.display = 'flex';
-            document.getElementById('social-panel').style.display = 'block';
-
-            // Mensaje de pólizas convenientes
-            document.getElementById('info-message').innerText = "En base a tu documento de identidad hemos accedido a diferentes fuentes de datos que nos indican que estos seguros son los más convenientes para ti en este momento.";
-        }, 2000);
-    }
-
-    // Función para canjear cupones
-    function redeemCoupon(couponCode) {
-        alert(`Cupón ${couponCode} canjeado exitosamente.`);
-        // Lógica para actualizar puntos o aplicar descuento...
-    }
-	// Función que se ejecuta cuando el usuario hace clic en "Continuar"
-    document.getElementById('continueBtn').addEventListener('click', function() {
-    // Obtener el valor del DNI ingresado
-    var dni = document.getElementById('dni').value;
-    
-    // Verificar que el DNI no esté vacío
-    if (dni !== "") {
-	setTimeout(function() {
-// Mostrar el marketplace
-        document.getElementById('marketplace-section').style.display = 'block';
-        
-        // Mostrar el chat
-        document.getElementById('chat').style.display = 'block';
-      
-    }, 3000); // Delay de 3 segundos (puedes ajustar este valor)
-        
-    } else {
-        alert('Por favor, ingrese su DNI');
-    }
-});
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(function(registration) {
-        console.log('Service Worker registrado con éxito:', registration);
-      })
-      .catch(function(error) {
-        console.log('Error al registrar el Service Worker:', error);
-      });
-  }
-</script>
-
+<script src="script.js"></script> <!-- Enlaza el JavaScript -->
 </body>
 </html>
