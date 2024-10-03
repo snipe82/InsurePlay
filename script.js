@@ -112,7 +112,7 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
 	var span = document.querySelector('.close');
 
 	// Función para mostrar el modal
-	function showModalMicrolearning2() {
+	function showModalMicrolearning() {
     modal.style.display = 'flex'; // Muestra el modal
 	}
 
