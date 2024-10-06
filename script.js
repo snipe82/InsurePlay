@@ -1,215 +1,119 @@
-    function showMarketplace() {
-        const dniInput = document.getElementById('dni').value;
-        const termsChecked = document.getElementById('terms').checked;
 
-        // Validar el formato del DNI (8 dígitos)
-        if (!/^\d{8}$/.test(dniInput)) {
-            alert('Por favor, ingresa un DNI válido de 8 dígitos.');
-            return;
-        }
-
-        if (!termsChecked) {
-            alert('Por favor, acepta los términos.');
-            return;
-        }
-
-        document.getElementById('login-form').style.display = 'none';
-        document.getElementById('loading').style.display = 'block';
-
-        setTimeout(() => {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('marketplace-section').style.display = 'block';
-            document.getElementById('points-display').style.display = 'flex';
-            document.getElementById('social-panel').style.display = 'block';
-
-            // Mensaje de pólizas convenientes
-            document.getElementById('info-message').innerText = "En base a tu documento de identidad hemos accedido a diferentes fuentes de datos que nos indican que estos seguros son los más convenientes para ti en este momento.";
-        }, 2000);
-		showModalMicrolearning();
-    }
-
-    // Función para canjear cupones
-    function redeemCoupon(couponCode) {
-        alert(`Cupón ${couponCode} canjeado exitosamente.`);
-        // Lógica para actualizar puntos o aplicar descuento...
-    }
-	// Función que se ejecuta cuando el usuario hace clic en "Continuar"
-    document.getElementById('continueBtn').addEventListener('click', function() {
-    // Obtener el valor del DNI ingresado
-    var dni = document.getElementById('dni').value;
-    
-    // Verificar que el DNI no esté vacío
-    if (dni !== "") {
-	setTimeout(function() {
-// Mostrar el marketplace
-        document.getElementById('marketplace-section').style.display = 'block';
-        
-        // Mostrar el chat
-        document.getElementById('chat').style.display = 'block';
-      
-    }, 3000); // Delay de 3 segundos (puedes ajustar este valor)
-        
-    } else {
-        alert('Por favor, ingrese su DNI');
-    }
-});
-
-  // Verifica si el navegador soporta la API de Web Speech
-if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  recognition.lang = 'es-ES'; // Puedes cambiar el idioma aquí
-  recognition.continuous = false; // Cambia a true si deseas que siga escuchando
-
-  // Evento que se dispara cuando se reconoce el discurso
-  recognition.onresult = function(event) {
-    const transcript = event.results[0][0].transcript;
-    document.getElementById('additional-info').value += transcript + " ";
-  };
-
-  // Botón para iniciar el reconocimiento de voz
-  document.getElementById('microphone-btn').addEventListener('click', function() {
-    recognition.start();
-  });
-
-  // Mensajes de estado opcionales
-  recognition.onstart = function() {
-    console.log("Reconocimiento de voz iniciado");
-  };
-  recognition.onend = function() {
-    console.log("Reconocimiento de voz finalizado");
-  };
-} else {
-  // Si el navegador no soporta la API
-  alert('Tu navegador no soporta reconocimiento de voz.');
+function login() {
+    document.getElementById('loading').style.display = 'block';
+    setTimeout(() => {
+        // Simulamos un inicio de sesión exitoso
+        document.querySelector('.login-form').style.display = 'none';
+        document.getElementById('menu').style.display = 'block'; // Mostrar menú después del login
+        document.getElementById('dashboard').style.display = 'block'; // Mostrar contenido
+        document.getElementById('loading').style.display = 'none'; 
+		// Actualizar el elemento con el ID 'logged-in-user' con el nombre del usuario
+		document.getElementById('logged-in-user').textContent = 'Usuario Broker: Nestor';
+    }, 2000); // Simulando un tiempo de carga
 }
- const textarea = document.getElementById('additional-info');
-    const micButton = document.getElementById('microphone-btn');
 
-    // Verificamos si el navegador soporta la API de reconocimiento de voz
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-
-    // Configuraciones del reconocimiento de voz
-    recognition.lang = 'es-ES'; // Idioma español
-    recognition.continuous = false; // No continuo, solo una frase
-    recognition.interimResults = false; // Solo mostrar resultados finales
-
-    micButton.addEventListener('click', () => {
-        recognition.start();
+// Función para cargar la opción 1
+function loadPage(pageId) {
+    // Lista de todas las páginas que deseas manejar
+    const pages = ['dashboard', 'searchPanel', 'goalsPanel', 'bigData']; // Agrega más IDs según tus necesidades
+    // Oculta todas las páginas
+    pages.forEach(page => {
+        document.getElementById(page).style.display = 'none';
     });
 
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        textarea.value += transcript;
+    // Muestra la página especificada
+    document.getElementById(pageId).style.display = 'block';
+}
+// Función para simular una búsqueda de persona
+function searchPerson() {
+    // Obtenemos el valor del input de búsqueda
+    const searchInput = document.getElementById('searchInput').value;
+
+    // Simulación de datos de una persona
+    const person = {
+        name: "Juan",
+        lastName: "Pérez",
+        age: 35,
+        occupation: "Ingeniero",
+        country: "Perú",
+        policies: [
+            {
+                insurer: "Aseguradora A",
+                broker: "Broker X",
+                coverage: "Cobertura Completa",
+                acquisitionDate: "2022-01-15",
+                paymentStatus: "Al día"
+            },
+            {
+                insurer: "Aseguradora B",
+                broker: "Broker Y",
+                coverage: "Cobertura Parcial",
+                acquisitionDate: "2023-05-20",
+                paymentStatus: "Al día"
+            }
+        ]
     };
 
-    recognition.onerror = (event) => {
-        console.error('Error en el reconocimiento de voz: ', event.error);
-    };
-	//MODAL
-	// Obtener referencias a los elementos
-	var modal = document.getElementById('loadingModal');
-	var span = document.querySelector('.close');
+    // Simulamos una búsqueda exitosa y mostramos los resultados
+    document.getElementById('clientName').innerText = person.name;
+    document.getElementById('clientLastName').innerText = person.lastName;
+    document.getElementById('clientAge').innerText = person.age;
+    document.getElementById('clientOccupation').innerText = person.occupation;
+    document.getElementById('clientCountry').innerText = person.country;
 
-	// Función para mostrar el modal
-	function showModalMicrolearning() {
-    modal.style.display = 'flex'; // Muestra el modal
-	}
+    // Mostrar las pólizas
+    const policiesList = document.getElementById('policiesList');
+    policiesList.innerHTML = ''; // Limpiamos el contenido anterior
+    person.policies.forEach(policy => {
+        const policyItem = document.createElement('li');
+        policyItem.innerHTML = `
+            <strong>Aseguradora:</strong> ${policy.insurer} <br>
+            <strong>Broker:</strong> ${policy.broker} <br>
+            <strong>Cobertura:</strong> ${policy.coverage} <br>
+            <strong>Fecha de Adquisición:</strong> ${policy.acquisitionDate}
+        `;
+        policiesList.appendChild(policyItem);
+    });
 
-	// Función para cerrar el modal
-	function closeModal() {
-    modal.style.display = 'none'; // Oculta el modal
-	}
+    // Estado de pago
+    document.getElementById('paymentStatus').innerText = person.policies[0].paymentStatus;
 
-	// Cerrar el modal cuando se hace clic en la "x"
-	span.onclick = closeModal;
+    // Mostramos el panel de resultados
+    document.getElementById('resultsPanel').style.display = 'block';
+}
+	function generateExcel() {
+            // Datos que deseas agregar al archivo de Excel
+            var data = [
+                ["Datalake Insure Play", "", "", ""],
+                ["Nombre Poliza", "Cliente",  "Documento","Coincidencia"],
+                ["Seguro Total", "Juan Perez","25558423", "100%"],
+                ["Seguro Fiestas", "Maria Escobar", "10125485","95%"],
+                ["Seguro Viajes California", "Milagros Mendozaa","74158925", "56%"]
+            ];
 
-	// Permitir cerrar el modal al hacer clic fuera de él
-	window.onclick = function(event) {
-    if (event.target === modal) {
-        closeModal();
+            // Crear una hoja de trabajo (worksheet) a partir de los datos
+            var worksheet = XLSX.utils.aoa_to_sheet(data);
+
+            // Crear un nuevo libro de trabajo (workbook)
+            var workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Hoja1");
+
+            // Generar el archivo Excel y descargarlo
+            XLSX.writeFile(workbook, "BigDataBrokerPlay.xlsx");
+}
+    // Función para formatear la fecha actual
+    function formatDate() {
+        const months = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto',
+            'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+        const now = new Date();
+        const day = now.getDate();
+        const month = months[now.getMonth()];
+        const year = now.getFullYear();
+
+        return `${day} ${month} ${year}`;
     }
-	};
-	// script.js
 
-// Mostrar el modal de seguro de salud
-function showOptionsModalSalud() {
-    const modal = document.getElementById("optionsModalSalud");
-    modal.style.display = "flex";
-}
-// También puedes permitir cerrar el modal al hacer clic fuera de él
-window.onclick = function(event) {
-    const modal = document.getElementById("optionsModalSalud");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
-
-// Mostrar el modal de seguro de vida
-function showOptionsModalVida() {
-    const modal = document.getElementById("optionsModalVida");
-    modal.style.display = "flex";
-}
-// También puedes permitir cerrar el modal al hacer clic fuera de él
-window.onclick = function(event) {
-    const modal = document.getElementById("optionsModalVida");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
-
-// Mostrar el modal de seguro de viajes
-function showOptionsModalViajes() {
-    const modal = document.getElementById("optionsModalViajes");
-    modal.style.display = "flex";
-}
-// También puedes permitir cerrar el modal al hacer clic fuera de él
-window.onclick = function(event) {
-    const modal = document.getElementById("optionsModalViajes");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
-
-// Mostrar el modal de seguro de fiestas
-function showOptionsModalFiestas() {
-    const modal = document.getElementById("optionsModalFiestas");
-    modal.style.display = "flex";
-}
-// También puedes permitir cerrar el modal al hacer clic fuera de él
-window.onclick = function(event) {
-    const modal = document.getElementById("optionsModalFiestas");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
-
-// Mostrar el modal de seguro de deportes extremos
-function showOptionsModalExtreme() {
-    const modal = document.getElementById("optionsModalExtreme");
-    modal.style.display = "flex";
-}
-// También puedes permitir cerrar el modal al hacer clic fuera de él
-window.onclick = function(event) {
-    const modal = document.getElementById("optionsModalExtreme");
-    if (event.target === modal) {
-        modal.style.display = "none";
-    }
-}
- 
-// Lógica para cerrar el modal
-document.querySelectorAll('.close').forEach(function(element) {
-    element.onclick = function() {
-        const modal = element.closest('.modal');
-        modal.style.display = "none";
-    };
-});
-
-
-// Añadir un evento al botón de conversar
-document.getElementById('chatButton').onclick = function() {
-    alert("¡Iniciando chat con tu broker favorito!");
-    // Aquí puedes agregar tu lógica para iniciar el chat
-};
-
- 
+    // Mostrar la fecha actual en el elemento con ID 'current-date'
+    document.getElementById('current-date').textContent = formatDate();
