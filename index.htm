@@ -3,172 +3,346 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Broker Play</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <title>Insure Play</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Enlaza el CSS -->
+</head> 
+
 <header>
-    <img src="logo.png" alt="Logo de Broker Play"> <!-- Cambia logo.png por la ruta de tu logo -->
-    <h1 class="header-title">Broker Play</h1>
-    <div class="points-account">
-        <strong id="current-date"></strong>  <!-- Aquí se mostrará la fecha actual -->
-        <div class="user-info">
-            <span id="logged-in-user"></span> <!-- Nombre de usuario -->
+    <!-- Espacio para el logo -->
+    <img src="logo.png" alt="Logo Insurance Play">
+    
+    <!-- Título de la cabecera -->
+    <div class="header-title">Insure Play - Tu plataforma de Seguros Digitales</div>
+
+    <!-- Sistema de puntos simulado en la cuenta -->
+    <div class="points-account" id="points-display" style="display: none;">
+        <p>Bienvenido, <strong>Juan Diego</strong></p>
+        <div class="medal">
+            <img src="platino.jpg" alt="Medalla de Plata">
+            <span>Nivel: Platino</span>
         </div>
+        <p>Puntos disponibles: <strong id="points">6000</strong></p>
     </div>
 </header>
-<div id="content"class="container" >
-	
-         <div class="login-form">
-            <h2>Iniciar Sesión</h2>
-            <label for="username">Usuario:</label>
-            <input type="text" id="username" placeholder="Ingrese su usuario">
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" placeholder="Ingrese su contraseña">
-            <button onclick="login()">Entrar</button>
-            <div class="loading" id="loading" style="display: none;">
-                <div class="loader"></div>
+
+<div class="container">
+    <!-- Formulario de Ingreso de DNI y Aceptación de Términos -->
+    <div class="login-form" id="login-form">
+        <h2>Insure Play - Acceso</h2>
+        <label for="dni">Ingresa tu DNI:</label>
+        <input type="text" id="dni" name="dni" placeholder="DNI">
+		<!-- Nueva casilla de texto para contar más cosas -->
+		<label for="additional-info">Cuéntanos más sobre ti (hobbies, rutina, intereses, diversión, planes):</label>
+		<textarea id="additional-info" rows="8" cols="50" name="additional-info" placeholder="Anímate a contarnos sobre tus hobbies, tu rutina diaria, tus intereses, cómo te diviertes, y cuáles son tus planes..."></textarea>
+ 
+		<!-- Botón para activar el micrófono -->
+        <button id="microphone-btn">🎤 Hablar</button>
+        <div>
+            <input type="checkbox" id="terms" name="terms">
+            <label for="terms">Acepto los términos y condiciones y el tratamiento de mis datos personales</label>
+        </div>
+
+        <button onclick="showMarketplace()" id="continueBtn">Ingresar</button>
+    </div>
+
+    <!-- Barra de carga -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+        <p>Procesando...</p>
+    </div>
+
+    <!-- Marketplace de Pólizas -->
+    <div id="marketplace-section" style="display: none;">
+        <h2>Pólizas de Seguros</h2>
+        <p class="info-message" id="info-message"></p>
+        <div class="section marketplace">
+            <div class="card">
+                <img src="salud.jpg" alt="Seguro de Salud">
+                <h3>Seguro de Salud</h3>
+                <p>Descripción del seguro de salud.</p>
+                <button onclick="showOptionsModalSalud()">Saber más...</button>
+            </div>
+            <div class="card">
+                <img src="vida.jpg" alt="Seguro de Vida">
+                <h3>Seguro de Vida</h3>
+                <p>Descripción del seguro de vida.</p>
+                <button onclick="showOptionsModalVida()">Saber más...</button>
+            </div>
+            <div class="card">
+                <img src="viajes.jpg" alt="Seguro de Viajes">
+                <h3>Seguro de Viajes</h3>
+                <p>Descripción del seguro de viajes.</p>
+                <button onclick="showOptionsModalViajes()">Saber más...</button>
+            </div>
+            <div class="card">
+                <img src="fiestas.jpg" alt="Seguro de Fiestas">
+                <h3>Seguro de Fiestas</h3>
+                <p>Descripción del seguro de fiestas.</p>
+                <button onclick="showOptionsModalFiestas()">Saber más...</button>
+            </div>
+			<div class="card">
+                <img src="extremos.jpg" alt="Seguro de Fiestas">
+                <h3>Seguro de Deportes Extremos</h3>
+                <p>Descripción de deportes extremos.</p>
+                <button onclick="showOptionsModalExtreme()">Saber más...</button>
+            </div>
+        </div>
+		<div class="fun-block">
+		<div class="fun-option">
+			<img src="colaboracion.jpg" alt="Opción 1">
+			<h3>Solicita colaboración</h3>
+			<p>Solicita colaoración para contratar pólizas con todos tus amigos</p>
+			<button>Solicitar</button>
+		</div>
+		<div class="fun-option">
+			<img src="microlearning2.png" alt="Opción 2">
+			<h3>Microlearning</h3>
+			<p>Está listo para el reto de preguntas y respuestas que te den 10,000 puntos???</p>
+			<button>Iniciar</button>
+		</div>
+		</div>
+        <h2>Cupones y Descuentos</h2>
+        <div class="section discounts">
+            <div class="card">
+                <h3>Cupón de Descuento</h3>
+                <p>Descuento del 10% en tu próxima compra.</p>
+                <button onclick="redeemCoupon('DESCUENTO10')">Canjear Cupón</button>
+            </div>
+            <div class="card">
+                <h3>Cupón de Recomendación</h3>
+                <p>Recomienda y gana un descuento del 15%.</p>
+                <button onclick="redeemCoupon('RECOMENDA15')">Canjear Cupón</button>
             </div>
         </div>
     </div>
-	<!-- Menú que se muestra después de iniciar sesión -->
-    <nav id="menu" style="display: none;">
-        <ul>
-            <li><a href="#" onclick="loadPage('dashboard')">Panel de Control</a></li>
-            <li><a href="#" onclick="loadPage('searchPanel')">Buscar</a></li>
-            <li><a href="#" onclick="loadPage('goalsPanel')">Mis metas</a></li>
-            <li><a href="#" onclick="loadPage('bigData')">Big Data</a></li>
+
+	<!-- Panel Social de Amigos Conectados -->
+	<div class="social" id="social-panel">
+    <h3>Contactos Conectados</h3>
+	<div class="friend">
+        <span class="status-circle-green"></span>
+		<span>Papá</span>
+    </div>
+    <div class="friend"><button class="btn-pedir-ayuda">Solicitar a papá colaboración para póliza</button> </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Mamá</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Sebastián</span>
+    </div>
+    <div class="friend"><button class="btn-pedir-ayuda">Sebastián te ha solicitado colaborar en el seguro de su viaje a Colombia</button> </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Mario</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Alejandro</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Lucero</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-green"></span>
+        <span>Milagros</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-yellow"></span>
+        <span>Miguel</span>
+    </div>
+    <div class="friend">
+        <span class="status-circle-yellow"></span>
+        <span>Vanessa</span>
+    </div>
+	</div>
+</div>
+<!-- Sección de Chat -->
+<div id="chat" class="chat-container">
+    <div class="chat-header">Chatea con un Broker</div>
+    <div class="chat-body" id="chat-body">
+        <p><strong>Asesor:</strong> Hola, ¿en qué puedo ayudarte hoy?</p>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="chat-message" placeholder="Escribe tu mensaje...">
+        <button id="send-message">Enviar</button>
+    </div>
+</div>
+
+<!-- Modal Microlearning Structure -->
+<div id="loadingModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="loadingImage" src="microlearning.png" alt="Cargando..." />
+    <h2 id="modalText" class="modal-text">¡Prepárate para el reto del Insurance Microlearning, termina el curso y gana 10,000 puntos!</h2>
+  </div>
+</div>
+<!-- Modal Seguro de Salud -->
+<div id="optionsModalSalud" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Salud</h2>
+
+        <!-- Panel Informativo sobre Cobertura Salud -->
+        <div class="info-panel">
+            <h3>Cobertura General del mejor seguro de Salud para tí</h3>
+            <p>A continuación se muestra una breve descripción de la cobertura general:</p>
+            <p>Este seguro ofrece protección ante una variedad de situaciones, incluyendo:</p>
+            <ul>
+                <li>Atención médica de emergencia.</li>
+                <li>Consultas y tratamientos médicos.</li>
+                <li>Asistencia en caso de accidentes.</li>
+                <li>Cobertura de gastos hospitalarios.</li>
+                <li>Protección financiera para ti y tu familia.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
         </ul>
-    </nav>
-    <div id="dashboard" class="container" style="display: none;">
-        <h2>Panel de Control</h2>
-        
-        <!-- Bandeja de Avisos -->
-        <div class="notification-tray">
-            <h3>Avisos Importantes</h3>
-            <div class="notification">
-                <strong>Nuevo reclamo registrado:</strong> ID 003 - Cliente: Luis Fernández
-            </div>
-            <div class="notification alert">
-                <strong>Alerta:</strong> Consulta C002 tiene más de 48 horas sin respuesta.
-            </div>
-            <div class="notification">
-                <strong>Solicitud de póliza aprobada:</strong> ID 1003 - Cliente: Teresa Ruiz
-            </div>
+        <button id="chatButton" class="chat-button">Conversar con tu broker favorito</button>
+    </div>
+</div>
+<!-- Modal Seguro de Vida -->
+<div id="optionsModalVida" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Vida</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Vida -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Vida</h3>
+            <p>Este seguro proporciona protección financiera para tus seres queridos en caso de que algo inesperado suceda. La cobertura incluye:</p>
+            <ul>
+                <li>Indemnización por fallecimiento.</li>
+                <li>Beneficios por invalidez total o permanente.</li>
+                <li>Cobertura de gastos funerarios.</li>
+                <li>Opciones de ahorro y acumulación de capital.</li>
+                <li>Asesoría en planificación patrimonial.</li>
+            </ul>
         </div>
 
-        <div class="section">
-            <h3>Reclamos</h3>
-            <div class="grid">
-                <div class="grid-item"><strong>ID Reclamo:</strong> 001</div>
-                <div class="grid-item"><strong>Cliente:</strong> Juan Pérez</div>
-                <div class="grid-item"><strong>Fecha:</strong> 01/10/2024</div>
-                <div class="grid-item"><strong>Estado:</strong> En Proceso</div>
-            </div>
-            <div class="grid">
-                <div class="grid-item"><strong>ID Reclamo:</strong> 002</div>
-                <div class="grid-item"><strong>Cliente:</strong> María López</div>
-                <div class="grid-item"><strong>Fecha:</strong> 28/09/2024</div>
-                <div class="grid-item"><strong>Estado:</strong> Resuelto</div>
-            </div>
-        </div>
-        <div class="section">
-            <h3>Solicitudes de Póliza</h3>
-            <div class="grid">
-                <div class="grid-item"><strong>ID Solicitud:</strong> 1001</div>
-                <div class="grid-item"><strong>Cliente:</strong> Carlos Gómez</div>
-                <div class="grid-item"><strong>Fecha:</strong> 29/09/2024</div>
-                <div class="grid-item"><strong>Estado:</strong> Pendiente</div>
-            </div>
-            <div class="grid">
-                <div class="grid-item"><strong>ID Solicitud:</strong> 1002</div>
-                <div class="grid-item"><strong>Cliente:</strong> Ana Torres</div>
-                <div class="grid-item"><strong>Fecha:</strong> 30/09/2024</div>
-                <div class="grid-item"><strong>Estado:</strong> Aprobada</div>
-            </div>
-        </div>
-        <div class="section">
-            <h3>Usuarios Conectados</h3>
-            <div class="grid">
-                <div class="grid-item"><strong>ID Usuario:</strong> U001</div>
-                <div class="grid-item"><strong>Nombre:</strong> Laura Martínez</div>
-                <div class="grid-item"><strong>Email:</strong> laura@example.com</div>
-                <div class="grid-item"><strong>Última Conexión:</strong> 01/10/2024 09:15</div>
-            </div>
-            <div class="grid">
-                <div class="grid-item"><strong>ID Usuario:</strong> U002</div>
-                <div class="grid-item"><strong>Nombre:</strong> Pedro Ríos</div>
-                <div class="grid-item"><strong>Email:</strong> pedro@example.com</div>
-                <div class="grid-item"><strong>Última Conexión:</strong> 30/09/2024 17:20</div>
-            </div>
-        </div>
-        <div class="section">
-            <h3>Consultas</h3>
-            <div class="grid">
-                <div class="grid-item alert"><strong>ID Consulta:</strong> C001</div>
-                <div class="grid-item alert"><strong>Cliente:</strong> Sofía Martínez</div>
-                <div class="grid-item alert"><strong>Consulta:</strong> Información sobre pólizas</div>
-                <div class="grid-item alert"><strong>Estado:</strong> Resuelto</div>
-            </div>
-            <div class="grid">
-                <div class="grid-item"><strong>ID Consulta:</strong> C002</div>
-                <div class="grid-item"><strong>Cliente:</strong> Andrés García</div>
-                <div class="grid-item"><strong>Consulta:</strong> Dudas sobre reclamos</div>
-                <div class="grid-item"><strong>Estado:</strong> En Proceso</div>
-            </div>
-        </div>
-        <button id="bussiness-intelligence" class="card">Abrir Panel de Business Inteligente</button>
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonLife" class="chat-button">Conversar con tu broker favorito</button>
     </div>
-	<div id="searchPanel" style="display: none;">
-    <div class="search-form">
-        <label for="searchInput">Buscar persona:</label>
-        <input type="text" id="searchInput" placeholder="Ingrese el nombre o ID">
-        <button onclick="searchPerson()">
-            <img src="lupa.png" alt="Buscar"> <!-- Cambia 'lupa.png' por la ruta de tu imagen de lupa -->
-        </button>
-    </div>
-    <!-- Panel donde se mostrarán los resultados -->
-    <div id="resultsPanel" class="result-card" style="display: none;">
-        <h2>Información del Cliente</h2>
-        <p><strong>Nombre:</strong> <span id="clientName"></span></p>
-        <p><strong>Apellido:</strong> <span id="clientLastName"></span></p>
-        <p><strong>Edad:</strong> <span id="clientAge"></span></p>
-        <p><strong>Ocupación:</strong> <span id="clientOccupation"></span></p>
-        <p><strong>País:</strong> <span id="clientCountry"></span></p>
+</div>
 
-        <h3>Pólizas Contratadas</h3>
-        <ul id="policiesList"></ul>
+<!-- Modal Seguro de Viajes -->
+<div id="optionsModalViajes" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Viajes</h2>
 
-        <h3>Estado de pago</h3>
-        <p id="paymentStatus"></p>
+        <!-- Panel Informativo sobre Cobertura de Seguro de Viajes -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Viajes</h3>
+            <p>Este seguro está diseñado para proporcionarte tranquilidad durante tus viajes. La cobertura incluye:</p>
+            <ul>
+                <li>Asistencia médica en el extranjero.</li>
+                <li>Indemnización por cancelación de viaje.</li>
+                <li>Protección de equipaje perdido o robado.</li>
+                <li>Responsabilidad civil en el extranjero.</li>
+                <li>Evacuación médica de emergencia.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonViajes" class="chat-button">Conversar con tu broker favorito</button>
     </div>
-	</div>
-	<!-- Panel donde se mostrarán las metas -->
-	<div id="goalsPanel" style="display: none;">
-    <h2>Mis Metas</h2>
-    <div class="goal" style="color: green;">
-        <h3>Meta Personal</h3>
-        <p>Has vendido: <strong>5 pólizas</strong></p>
-        <p>Meta del mes: <strong>10 pólizas</strong></p>
-        <p>Te faltan: <strong>5 pólizas</strong> para alcanzar tu meta.</p>
+</div>
+
+<!-- Modal Seguro de Fiestas -->
+<div id="optionsModalFiestas" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Fiestas</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Fiestas -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Fiestas</h3>
+            <p>Este seguro está diseñado para protegerte durante tus eventos y celebraciones. La cobertura incluye:</p>
+            <ul>
+                <li>Responsabilidad civil por daños a terceros.</li>
+                <li>Cobertura de accidentes personales para los asistentes.</li>
+                <li>Protección contra cancelación o reprogramación del evento.</li>
+                <li>Cobertura de daño a la propiedad alquilada.</li>
+                <li>Recojo por chofer en caso de intoxicación.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonFiestas" class="chat-button">Conversar con tu broker favorito</button>
     </div>
-    <div class="goal" style="color: orange;">
-        <h3>Meta del Equipo</h3>
-        <p>Meta del equipo: <strong>50 pólizas</strong></p>
-        <p>Pólizas vendidas hasta ahora: <strong>30 pólizas</strong></p>
-        <p>Estado: <strong>En curso</strong></p>
+</div>
+
+<!-- Modal Seguro de Deportes Extremos -->
+<div id="optionsModalExtreme" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title">Seguro de Deportes Extremos</h2>
+
+        <!-- Panel Informativo sobre Cobertura de Seguro de Deportes Extremos -->
+        <div class="info-panel">
+            <h3>Cobertura General de Seguro de Deportes Extremos</h3>
+            <p>Este seguro está diseñado para brindarte protección durante la práctica de deportes extremos. La cobertura incluye:</p>
+            <ul>
+                <li>Indemnización por lesiones accidentales durante la actividad.</li>
+                <li>Asistencia médica y evacuación en caso de emergencia.</li>
+                <li>Cobertura de equipo deportivo perdido o dañado.</li>
+                <li>Responsabilidad civil por daños a terceros.</li>
+                <li>Protección en actividades como escalada, paracaidismo, surf, entre otros.</li>
+            </ul>
+        </div>
+
+        <ul class="options-list">
+            <h3>Selecciona a tu broker favorito...</h3>
+            <li><label><input type="radio" name="options" value="Opción 1"> Broker 1</label></li>
+            <li><label><input type="radio" name="options" value="Opción 2"> Broker 2</label></li>
+            <li><label><input type="radio" name="options" value="Opción 3"> Broker 3</label></li>
+            <li><label><input type="radio" name="options" value="Opción 4"> Broker 4</label></li>
+            <li><label><input type="radio" name="options" value="Opción 5"> Broker 5</label></li>
+            <li><label><input type="radio" name="options" value="Opción 6"> Broker 6</label></li>
+        </ul>
+        <button id="chatButtonDeportesExtremos" class="chat-button">Conversar con tu broker favorito</button>
     </div>
-	</div>
-    <div id="bigData" style="display: none;">
-    <div class="search-form">
-        <label for="searchInput">Accede desde tu excel a nuestro Data Lake</label>
-        <button onclick="generateExcel()">
-            <img src="excel.png" alt="Acceder"> <!-- Cambia 'lupa.png' por la ruta de tu imagen de lupa -->
-        </button>
-    </div>
-	</div>
-	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="script.js"></script>
+</div>
+
+
+<!-- Pie de Página -->
+<footer>
+    <p>&copy; 2024 Insure Play. Todos los derechos reservados.</p>
+</footer>
+<script src="script.js"></script> <!-- Enlaza el JavaScript -->
 </body>
 </html>
